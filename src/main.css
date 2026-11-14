@@ -1,0 +1,55 @@
+:root {
+    /* Colors */
+    --color-background: #0b1020;
+    --color-surface: #151d31;
+    --color-surface-elevated: #1c263c;
+
+    --color-primary: #9566ff;
+    --color-primary-dark: #7451dc;
+    --color-primary-hover: #a981ff;
+    --color-secondary-border: #465273;
+
+    --color-text: #f4f5ff;
+    --color-text-secondary: #a1aecb;
+    --color-border: #34415f;
+
+    --color-success: #4ade80;
+    --color-error: #f87171;
+
+    /* Typography */
+    --font-heading: Inter, system-ui, sans-serif;
+    --font-body: Inter, system-ui, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.4;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}

@@ -10,10 +10,10 @@
         "verbatimModuleSyntax": true,
         "isolatedModules": true,
         "skipLibCheck": true,
-        "types": ["vite/client"],
+        "types": ["vite/client", "jest", "@testing-library/jest-dom"],
         "paths": {
             "components/*": ["./src/components/*"]
         }
     },
-    "include": ["src", "vite.config.ts"]
+    "include": ["src", "vite.config.ts", "jest.setup.ts"]
 }

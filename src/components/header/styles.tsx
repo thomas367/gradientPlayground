@@ -9,7 +9,7 @@ export const Title = styled.h1`
     margin: 0 0 6px;
     font-family: var(--font-heading);
     font-size: clamp(30px, 4vw, 42px);
-    letter-spacing: -0.04em;
+    letter-spacing: -2px;
 
     background: linear-gradient(90deg, var(--color-primary), #f28bbd);
     color: transparent;

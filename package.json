@@ -1,0 +1,46 @@
+{
+    "name": "gradientplayground",
+    "version": "1.0.0",
+    "description": "An interactive CSS gradient playground to create, customize, preview, and export linear, radial, and conic gradients.",
+    "homepage": "https://github.com/thomas367/gradientPlayground#readme",
+    "bugs": {
+        "url": "https://github.com/thomas367/gradientPlayground/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thomas367/gradientPlayground.git"
+    },
+    "license": "ISC",
+    "author": "Thomas Liakos",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "typecheck": "tsc",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write ."
+    },
+    "devDependencies": {
+        "@eslint/js": "9.39.5",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "@vitejs/plugin-react": "6.1.2",
+        "eslint": "9.39.5",
+        "eslint-config-prettier": "10.1.8",
+        "eslint-plugin-react-hooks": "7.1.1",
+        "globals": "17.13.0",
+        "prettier": "3.9.10",
+        "tsx": "4.23.15",
+        "typescript": "5.9.3",
+        "typescript-eslint": "8.72.2",
+        "vite": "8.3.8"
+    },
+    "dependencies": {
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
+        "styled-components": "6.6.0"
+    }
+}

@@ -1,9 +1,10 @@
-const App = () => {
-    return (
-        <main>
-            <h1>Gradient Playground</h1>
-        </main>
-    );
-};
+import type React from 'react';
+import { Header } from 'components/header/header';
 
-export default App;
+export function App(): React.JSX.Element {
+    return (
+        <>
+            <Header />
+        </>
+    );
+}

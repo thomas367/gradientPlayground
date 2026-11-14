@@ -1,8 +1,8 @@
 import type React from 'react';
 import { Header } from 'components/header/header';
 import { Layout } from 'components/layout/layout';
-import { LeftSection } from 'components/leftSection/leftSection';
-import { RightSection } from 'components/rightSection/rightSection';
+import { LeftSection } from 'components/section/leftSection';
+import { RightSection } from 'components/section/rightSection';
 
 import * as Styled from './styles';
 

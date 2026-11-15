@@ -22,7 +22,7 @@ class GradientStore {
     }
 
     selectPreset = (preset: GradientPreset) => {
-        this.layers = structuredClone(preset.layers);
+        this.layers = preset.layers;
         this.selectedPresetId = preset.id;
     };
 

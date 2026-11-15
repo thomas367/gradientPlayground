@@ -7,16 +7,26 @@ export const presets: GradientPreset[] = [
         name: 'Electric Blue',
         layers: [
             {
-                id: 'electric-blue-layer',
+                id: 'light-layer',
                 type: GradientType.RADIAL,
                 enabled: true,
                 opacity: 1,
-                shape: Shape.ELLIPSE,
+                shape: Shape.CIRCLE,
                 position: { x: 50, y: 15 },
                 stops: [
-                    { id: 'eb-1', color: '#a9b9ff', position: 0 },
-                    { id: 'eb-2', color: '#365bda', position: 55 },
-                    { id: 'eb-3', color: '#0c1a61', position: 100 },
+                    { id: 'li-1', color: '#ffffffb3', position: 0 },
+                    { id: 'li-2', color: '#ffffff00', position: 45 },
+                ],
+            },
+            {
+                id: 'electric-blue-layer',
+                type: GradientType.LINEAR,
+                enabled: true,
+                opacity: 1,
+                angle: 180,
+                stops: [
+                    { id: 'eb-1', color: '#365bda', position: 0 },
+                    { id: 'eb-2', color: '#0c1a61', position: 100 },
                 ],
             },
         ],

@@ -1,0 +1,116 @@
+import type { GradientPreset } from 'types/gradient';
+import { Shape, GradientType } from 'types/gradient';
+
+export const presets: GradientPreset[] = [
+    {
+        id: 'electric-blue',
+        name: 'Electric Blue',
+        layers: [
+            {
+                id: 'electric-blue-layer',
+                type: GradientType.RADIAL,
+                enabled: true,
+                opacity: 1,
+                shape: Shape.ELLIPSE,
+                position: { x: 50, y: 15 },
+                stops: [
+                    { id: 'eb-1', color: '#a9b9ff', position: 0 },
+                    { id: 'eb-2', color: '#365bda', position: 55 },
+                    { id: 'eb-3', color: '#0c1a61', position: 100 },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'sunset',
+        name: 'Sunset',
+        layers: [
+            {
+                id: 'sunset-layer',
+                type: GradientType.LINEAR,
+                enabled: true,
+                opacity: 1,
+                angle: 135,
+                stops: [
+                    { id: 'sun-1', color: '#ffb46d', position: 0 },
+                    { id: 'sun-2', color: '#e94890', position: 55 },
+                    { id: 'sun-3', color: '#441478', position: 100 },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'aurora',
+        name: 'Aurora',
+        layers: [
+            {
+                id: 'aurora-layer',
+                type: GradientType.RADIAL,
+                enabled: true,
+                opacity: 1,
+                shape: Shape.ELLIPSE,
+                position: { x: 50, y: 0 },
+                stops: [
+                    { id: 'aur-1', color: '#83f7d2', position: 0 },
+                    { id: 'aur-2', color: '#159f99', position: 50 },
+                    { id: 'aur-3', color: '#11245d', position: 100 },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'rose',
+        name: 'Rose',
+        layers: [
+            {
+                id: 'rose-layer',
+                type: GradientType.LINEAR,
+                enabled: true,
+                opacity: 1,
+                angle: 145,
+                stops: [
+                    { id: 'rose-1', color: '#f8a9cc', position: 0 },
+                    { id: 'rose-2', color: '#a74692', position: 50 },
+                    { id: 'rose-3', color: '#36164d', position: 100 },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'conic-burst',
+        name: 'Conic Burst',
+        layers: [
+            {
+                id: 'conic-layer',
+                type: GradientType.CONIC,
+                enabled: true,
+                opacity: 1,
+                angle: 140,
+                position: { x: 50, y: 50 },
+                stops: [
+                    { id: 'conic-1', color: '#5368ff', position: 0 },
+                    { id: 'conic-2', color: '#e45ca9', position: 33 },
+                    { id: 'conic-3', color: '#ff9a3c', position: 66 },
+                    { id: 'conic-4', color: '#5368ff', position: 100 },
+                ],
+            },
+        ],
+    },
+    {
+        id: 'deep-ocean',
+        name: 'Deep Ocean',
+        layers: [
+            {
+                id: 'ocean-layer',
+                type: GradientType.LINEAR,
+                enabled: true,
+                opacity: 1,
+                angle: 145,
+                stops: [
+                    { id: 'ocean-1', color: '#06b6d4', position: 0 },
+                    { id: 'ocean-2', color: '#0b265d', position: 100 },
+                ],
+            },
+        ],
+    },
+];

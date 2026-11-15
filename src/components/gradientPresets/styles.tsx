@@ -10,7 +10,7 @@ export const Presets = styled.div`
     }
 `;
 
-export const Preset = styled.button`
+export const Preset = styled.button<{ $selected: boolean }>`
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -21,6 +21,18 @@ export const Preset = styled.button`
     background-color: var(--color-surface-elevated);
     color: var(--color-text-secondary);
     text-align: center;
+
+    cursor: pointer;
+    border-color: ${({ $selected }) => ($selected ? 'var(--color-primary)' : 'var(--color-border)')};
+
+    &:hover {
+        border-color: var(--color-primary-hover);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
 
     &:disabled {
         opacity: 1;

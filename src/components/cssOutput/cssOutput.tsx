@@ -1,28 +1,17 @@
 import type React from 'react';
 import { Copy } from 'lucide-react';
+import { observer } from 'mobx-react-lite';
 import { Panel } from 'components/panel/panel';
+import { gradientStore } from 'stores/gradientStore';
 
 import * as Styled from './styles';
 
-// TODO: dummy sample css
-const SAMPLE_CSS = `background:
-    radial-gradient(
-        circle at 20% 18%,
-        rgba(255, 255, 255, 0.65),
-        transparent 35%
-    ),
-    conic-gradient(
-        from 140deg at 70% 60%,
-        #5266ef 0deg,
-        #ec4899 120deg,
-        #ff9a3c 240deg,
-        #5266ef 360deg
-    );`;
+export const CSSOutput = observer(function CSSOutput(): React.JSX.Element {
+    const { css } = gradientStore;
 
-export function CSSOutput(): React.JSX.Element {
     const handleCopy = async () => {
         // TODO: toastr message for copy
-        await navigator.clipboard.writeText(SAMPLE_CSS);
+        await navigator.clipboard.writeText(css);
     };
 
     return (
@@ -36,8 +25,8 @@ export function CSSOutput(): React.JSX.Element {
             }
         >
             <Styled.Code>
-                <code>{SAMPLE_CSS}</code>
+                <code>{css}</code>
             </Styled.Code>
         </Panel>
     );
-}
+});

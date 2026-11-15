@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import type React from 'react';
+import { observer } from 'mobx-react-lite';
 import { Panel } from 'components/panel/panel';
+import { gradientStore } from 'stores/gradientStore';
 
 import * as Styled from './styles';
 
@@ -12,7 +14,9 @@ const RATIOS: Record<Exclude<AspectRatio, 'custom'>, number> = {
     landscape: 16 / 9,
 };
 
-export function GradientPreview(): React.JSX.Element  {
+export const GradientPreview = observer(function GradientPreview(): React.JSX.Element {
+    const { background } = gradientStore;
+
     const [aspectRatio, setAspectRatio] = useState<AspectRatio>('portrait');
     const [ratioWidth, setRatioWidth] = useState(4);
     const [ratioHeight, setRatioHeight] = useState(5);
@@ -60,10 +64,12 @@ export function GradientPreview(): React.JSX.Element  {
             )}
 
             <Styled.Stage>
-                <Styled.Preview $ratio={ratio} />
+                <Styled.Preview $ratio={ratio} $background={background} />
             </Styled.Stage>
 
-            <Styled.Hint>The topmost enabled layer is drawn first. Transparent stops reveal layers beneath.</Styled.Hint>
+            <Styled.Hint>
+                The topmost enabled layer is drawn first. Transparent stops reveal layers beneath.
+            </Styled.Hint>
         </Panel>
     );
-};
+});

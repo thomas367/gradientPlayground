@@ -19,6 +19,10 @@ const config = {
     },
     moduleNameMapper: {
         '^components/(.*)$': '<rootDir>/src/components/$1',
+        '^data/(.*)$': '<rootDir>/src/data/$1',
+        '^stores/(.*)$': '<rootDir>/src/stores/$1',
+        '^types/(.*)$': '<rootDir>/src/types/$1',
+        '^utils/(.*)$': '<rootDir>/src/utils/$1',
     },
     clearMocks: true,
     collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/main.tsx', '!src/**/__tests__/**', '!src/**/*.d.ts'],

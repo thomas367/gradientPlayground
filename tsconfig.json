@@ -12,7 +12,11 @@
         "skipLibCheck": true,
         "types": ["vite/client", "jest", "@testing-library/jest-dom"],
         "paths": {
-            "components/*": ["./src/components/*"]
+            "components/*": ["./src/components/*"],
+            "data/*": ["./src/data/*"],
+            "stores/*": ["./src/stores/*"],
+            "types/*": ["./src/types/*"],
+            "utils/*": ["./src/utils/*"]
         }
     },
     "include": ["src", "vite.config.ts", "jest.setup.ts"]

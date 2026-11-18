@@ -41,12 +41,6 @@ describe('Gradient CSS generator', () => {
         expect(generateGradient(conic)).toBe('conic-gradient(from 45deg at 50% 50%, #ff0000 0deg, #0000ff 360deg)');
     });
 
-    test('applies layer opacity to color stops', () => {
-        expect(generateGradient({ ...linear, opacity: 0.5 })).toBe(
-            'linear-gradient(90deg, rgba(255, 0, 0, 0.5) 0%, rgba(0, 0, 255, 0.5) 100%)',
-        );
-    });
-
     test('excludes disabled layers', () => {
         expect(generateBackground([{ ...linear, enabled: false }])).toBe('');
     });

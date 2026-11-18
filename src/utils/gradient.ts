@@ -1,37 +1,5 @@
-import { GradientType, type ColorStop, type GradientLayer } from 'types/gradient';
-
-const HEX_PATTERN = /^#?([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
-const FALLBACK_COLOR = 'transparent';
-
-export const isValidHex = (hex: string): boolean => HEX_PATTERN.test(hex);
-
-const hexToRgba = (hex: string, opacity: number): string => {
-    const normalized = hex.replace('#', '');
-
-    const expanded =
-        normalized.length <= 4
-            ? normalized
-                  .split('')
-                  .map((character) => character + character)
-                  .join('')
-            : normalized;
-
-    const r = parseInt(expanded.slice(0, 2), 16);
-    const g = parseInt(expanded.slice(2, 4), 16);
-    const b = parseInt(expanded.slice(4, 6), 16);
-
-    const alpha = expanded.length === 8 ? parseInt(expanded.slice(6, 8), 16) / 255 : 1;
-
-    return `rgba(${r}, ${g}, ${b}, ${Number((alpha * opacity).toFixed(3))})`;
-};
-
-const formatColor = (color: string, opacity: number): string => {
-    if (!isValidHex(color)) {
-        return FALLBACK_COLOR;
-    }
-
-    return opacity === 1 ? color : hexToRgba(color, opacity);
-};
+import { GradientType } from 'types/gradient';
+import type { ColorStop, GradientLayer } from 'types/gradient';
 
 const formatStops = (stops: ColorStop[], opacity: number, type: GradientLayer['type']): string =>
     [...stops]
@@ -40,7 +8,7 @@ const formatStops = (stops: ColorStop[], opacity: number, type: GradientLayer['t
             const unit = type === GradientType.CONIC ? 'deg' : '%';
             const value = type === GradientType.CONIC ? position * 3.6 : position;
 
-            return `${formatColor(color, opacity)} ${Number(value.toFixed(3))}${unit}`;
+            return `${color} ${Number(value.toFixed(3))}${unit}`;
         })
         .join(', ');
 

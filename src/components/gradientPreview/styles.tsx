@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Stage = styled.div`
     display: grid;
-
     align-items: center;
     justify-items: center;
     min-height: 416px;

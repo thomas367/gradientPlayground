@@ -12,7 +12,7 @@ export const GradientPresets = observer(function GradientPresets(): React.JSX.El
 
     return (
         <Panel title="Presets">
-            <Styled.Presets>
+            <Styled.PresetsWrapper>
                 {presets.map((preset) => (
                     <Styled.Preset
                         key={preset.id}
@@ -25,7 +25,7 @@ export const GradientPresets = observer(function GradientPresets(): React.JSX.El
                         <Styled.Name>{preset.name}</Styled.Name>
                     </Styled.Preset>
                 ))}
-            </Styled.Presets>
+            </Styled.PresetsWrapper>
         </Panel>
     );
 });

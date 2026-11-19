@@ -43,12 +43,68 @@ export const LayerList = styled.div`
 
 export const LayerItem = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 12px;
     padding: 14px;
     border: 1px solid var(--color-border);
     border-radius: 10px;
     background: var(--color-surface-elevated);
+`;
+
+export const LayerHeader = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin-bottom: 12px;
+`;
+
+export const LayerType = styled.span`
+    padding: 5px 10px;
+    border: 1px solid var(--color-secondary-border);
+    border-radius: 7px;
+    background: #202b47;
+    color: var(--color-text);
+    font-size: 12px;
+    text-transform: capitalize;
+    white-space: nowrap;
+`;
+
+export const LayerActions = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: auto;
+`;
+
+export const IconButton = styled.button`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid var(--color-secondary-border);
+    border-radius: 7px;
+    background: #202b47;
+    color: var(--color-text);
+
+    cursor: pointer;
+
+    &:hover {
+        background: #2d3a5b;
+        border-color: var(--color-primary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
 `;
 
 export const LayerSamplesWrapper = styled.div`

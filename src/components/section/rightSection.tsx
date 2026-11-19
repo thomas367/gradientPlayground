@@ -1,5 +1,5 @@
 import type React from 'react';
-import { GradientLayers } from 'components/gradientLayers/gradientLayers'
+import { GradientLayers } from 'components/gradientLayers/gradientLayers';
 
 import * as Styled from './styles';
 

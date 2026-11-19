@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { Plus } from 'lucide-react';
+import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, Copy, Trash2 } from 'lucide-react';
 import { Panel } from 'components/panel/panel';
 import { gradientStore } from 'stores/gradientStore';
 import { GradientType } from 'types/gradient';
@@ -32,8 +32,32 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
             <Styled.LayerList>
                 {layers.map((layer) => (
                     <Styled.LayerItem key={layer.id}>
+                        <Styled.LayerHeader>
+                            <GripVertical size={15} />
+                            <input type="checkbox" checked={layer.enabled} readOnly />
+                            <Styled.LayerType>{layer.type} gradient</Styled.LayerType>
+                            <Styled.LayerActions>
+                                <Styled.IconButton type="button" aria-label="Move layer up">
+                                    <ArrowUp size={15} />
+                                </Styled.IconButton>
+                                <Styled.IconButton type="button" aria-label="Move layer down">
+                                    <ArrowDown size={15} />
+                                </Styled.IconButton>
+                                <Styled.IconButton type="button" aria-label="Toggle visibility">
+                                    <Eye size={15} />
+                                </Styled.IconButton>
+                                <Styled.IconButton type="button" aria-label="Duplicate layer">
+                                    <Copy size={15} />
+                                </Styled.IconButton>
+                                <Styled.IconButton type="button" aria-label="Delete layer">
+                                    <Trash2 size={15} />
+                                </Styled.IconButton>
+                            </Styled.LayerActions>
+                        </Styled.LayerHeader>
                         <Styled.LayerInfo>
-                            <Styled.LayerName>{layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient</Styled.LayerName>
+                            <Styled.LayerName>
+                                {layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient
+                            </Styled.LayerName>
                             <Styled.LayerSamplesWrapper>
                                 {layer.stops.map((stop) => (
                                     <Styled.LayerSample

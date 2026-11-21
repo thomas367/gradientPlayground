@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ChevronDown } from 'lucide-react';
 
 export const ButtonsWrapper = styled.div`
     display: flex;
@@ -23,9 +24,11 @@ export const AddButton = styled.button`
     white-space: nowrap;
     cursor: pointer;
 
-    &:hover {
-        background: #2d3a5b;
-        border-color: #9566ff;
+    @media (hover: hover) {
+        &:hover {
+            background: #2d3a5b;
+            border-color: #9566ff;
+        }
     }
 
     &:focus-visible {
@@ -84,15 +87,48 @@ export const LayerHeader = styled.div`
     margin-bottom: 12px;
 `;
 
-export const LayerType = styled.span`
-    padding: 5px 10px;
+export const LayerTypeSelectWrapper = styled.div`
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 150px;
+`;
+
+export const LayerTypeSelect = styled.select`
+    appearance: none;
+    width: 100%;
+    height: 28px;
+    padding: 0 28px 0 10px;
     border: 1px solid var(--color-secondary-border);
     border-radius: 7px;
     background: #202b47;
     color: var(--color-text);
     font-size: 12px;
-    text-transform: capitalize;
-    white-space: nowrap;
+    font-weight: 500;
+    cursor: pointer;
+
+    @media (hover: hover) {
+        &:hover {
+            background: #2d3a5b;
+        }
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+`;
+
+export const LayerTypeChevron = styled(ChevronDown)`
+    position: absolute;
+    right: 8px;
+    color: var(--color-text-secondary);
+    pointer-events: none;
 `;
 
 export const LayerActions = styled.div`

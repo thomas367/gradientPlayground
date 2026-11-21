@@ -9,7 +9,8 @@ import * as Styled from './styles';
 const gradientTypes: GradientType[] = [GradientType.LINEAR, GradientType.RADIAL, GradientType.CONIC];
 
 export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
-    const { layers, toggleLayerVisibility, removeLayer, duplicateLayer, moveLayer, addLayer } = gradientStore;
+    const { layers, toggleLayerVisibility, removeLayer, duplicateLayer, moveLayer, addLayer, changeLayerType } =
+        gradientStore;
 
     return (
         <Panel
@@ -31,7 +32,18 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                         <Styled.LayerItem key={layer.id}>
                             <Styled.LayerHeader>
                                 <GripVertical size={15} />
-                                <Styled.LayerType>{layer.type} gradient</Styled.LayerType>
+                                <Styled.LayerTypeSelectWrapper>
+                                    <Styled.LayerTypeSelect
+                                        aria-label="Layer type"
+                                        value={layer.type}
+                                        onChange={(event) => changeLayerType(layer.id, event.target.value as GradientType)}
+                                    >
+                                        <option value={GradientType.LINEAR}>Linear gradient</option>
+                                        <option value={GradientType.RADIAL}>Radial gradient</option>
+                                        <option value={GradientType.CONIC}>Conic gradient</option>
+                                    </Styled.LayerTypeSelect>
+                                    <Styled.LayerTypeChevron size={14} aria-hidden="true" />
+                                </Styled.LayerTypeSelectWrapper>
                                 <Styled.LayerActions>
                                     <Styled.IconButton
                                         type="button"

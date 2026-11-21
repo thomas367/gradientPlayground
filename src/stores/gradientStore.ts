@@ -77,6 +77,10 @@ class GradientStore {
         this.selectedPresetId = null;
     };
 
+    changeLayerType = (id: string, type: GradientType) => {
+        console.log(id, type);
+    };
+
     updateLayer = (id: string, changes: Partial<GradientLayer>) => {
         const layer = this.layers.find((layer) => layer.id === id);
 

@@ -29,8 +29,10 @@ export const CopyButton = styled.button`
     cursor: pointer;
     transition: background-color 0.2s ease;
 
-    &:hover {
-        background-color: var(--color-primary);
+    @media (hover: hover) {
+        &:hover {
+            background-color: var(--color-primary);
+        }
     }
 
     &:focus-visible {

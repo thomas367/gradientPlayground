@@ -25,8 +25,10 @@ export const Preset = styled.button<{ $selected: boolean }>`
     cursor: pointer;
     border-color: ${({ $selected }) => ($selected ? 'var(--color-primary)' : 'var(--color-border)')};
 
-    &:hover {
-        border-color: var(--color-primary-hover);
+    @media (hover: hover) {
+        &:hover {
+            border-color: var(--color-primary-hover);
+        }
     }
 
     &:focus-visible {

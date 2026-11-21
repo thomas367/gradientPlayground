@@ -9,7 +9,7 @@ import * as Styled from './styles';
 const gradientTypes: GradientType[] = [GradientType.LINEAR, GradientType.RADIAL, GradientType.CONIC];
 
 export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
-    const { layers, toggleLayerVisibility, removeLayer, duplicateLayer } = gradientStore;
+    const { layers, toggleLayerVisibility, removeLayer, duplicateLayer, moveLayer } = gradientStore;
 
     return (
         <Panel
@@ -37,10 +37,18 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                                 <GripVertical size={15} />
                                 <Styled.LayerType>{layer.type} gradient</Styled.LayerType>
                                 <Styled.LayerActions>
-                                    <Styled.IconButton type="button" aria-label="Move layer up">
+                                    <Styled.IconButton
+                                        type="button"
+                                        aria-label="Move layer up"
+                                        onClick={() => moveLayer(layer.id, 'up')}
+                                    >
                                         <ArrowUp size={15} />
                                     </Styled.IconButton>
-                                    <Styled.IconButton type="button" aria-label="Move layer down">
+                                    <Styled.IconButton
+                                        type="button"
+                                        aria-label="Move layer down"
+                                        onClick={() => moveLayer(layer.id, 'down')}
+                                    >
                                         <ArrowDown size={15} />
                                     </Styled.IconButton>
                                     <Styled.EyeButton

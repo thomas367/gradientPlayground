@@ -57,6 +57,19 @@ class GradientStore {
         this.selectedPresetId = null;
     };
 
+    moveLayer = (id: string, direction: 'up' | 'down') => {
+        const index = this.layers.findIndex((layer) => layer.id === id);
+        if (index === -1) return;
+        if (index === 0 && direction === 'up') return;
+        if (index === this.layers.length - 1 && direction === 'down') return;
+
+        const targetIndex = direction === 'up' ? index - 1 : index + 1;
+        const [layer] = this.layers.splice(index, 1);
+        this.layers.splice(targetIndex, 0, layer);
+
+        this.selectedPresetId = null;
+    };
+
     updateLayer = (id: string, changes: Partial<GradientLayer>) => {
         const layer = this.layers.find((layer) => layer.id === id);
 

@@ -34,6 +34,11 @@ class GradientStore {
         this.updateLayer(id, { enabled: !layer.enabled });
     };
 
+    removeLayer = (id: string) => {
+        this.layers = this.layers.filter((layer) => layer.id !== id);
+        this.selectedPresetId = null;
+    };
+
     updateLayer = (id: string, changes: Partial<GradientLayer>) => {
         const layer = this.layers.find((layer) => layer.id === id);
 

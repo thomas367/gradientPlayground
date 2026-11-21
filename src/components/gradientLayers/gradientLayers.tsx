@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, EyeOff, Copy, Trash2 } from 'lucide-react';
+import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, EyeOff, Copy, Layers, Trash2 } from 'lucide-react';
 import { Panel } from 'components/panel/panel';
 import { gradientStore } from 'stores/gradientStore';
 import { GradientType } from 'types/gradient';
@@ -9,7 +9,7 @@ import * as Styled from './styles';
 const gradientTypes: GradientType[] = [GradientType.LINEAR, GradientType.RADIAL, GradientType.CONIC];
 
 export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
-    const { layers, toggleLayerVisibility } = gradientStore;
+    const { layers, toggleLayerVisibility, removeLayer } = gradientStore;
 
     return (
         <Panel
@@ -29,53 +29,65 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                 </Styled.ButtonsWrapper>
             }
         >
-            <Styled.LayerList>
-                {layers.map((layer) => (
-                    <Styled.LayerItem key={layer.id}>
-                        <Styled.LayerHeader>
-                            <GripVertical size={15} />
-                            <Styled.LayerType>{layer.type} gradient</Styled.LayerType>
-                            <Styled.LayerActions>
-                                <Styled.IconButton type="button" aria-label="Move layer up">
-                                    <ArrowUp size={15} />
-                                </Styled.IconButton>
-                                <Styled.IconButton type="button" aria-label="Move layer down">
-                                    <ArrowDown size={15} />
-                                </Styled.IconButton>
-                                <Styled.EyeButton
-                                    type="button"
-                                    aria-label={layer.enabled ? 'Hide layer' : 'Show layer'}
-                                    $enabled={layer.enabled}
-                                    onClick={() => toggleLayerVisibility(layer.id)}
-                                >
-                                    {layer.enabled ? <Eye size={15} /> : <EyeOff size={15} />}
-                                </Styled.EyeButton>
-                                <Styled.IconButton type="button" aria-label="Duplicate layer">
-                                    <Copy size={15} />
-                                </Styled.IconButton>
-                                <Styled.IconButton type="button" aria-label="Delete layer">
-                                    <Trash2 size={15} />
-                                </Styled.IconButton>
-                            </Styled.LayerActions>
-                        </Styled.LayerHeader>
-                        <Styled.LayerInfo>
-                            <Styled.LayerName>
-                                {layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient
-                            </Styled.LayerName>
-                            <Styled.LayerSamplesWrapper>
-                                {layer.stops.map((stop) => (
-                                    <Styled.LayerSample
-                                        key={stop.id}
-                                        $color={stop.color}
-                                        title={`${stop.color} — ${stop.position}%`}
+            {layers.length > 0 ? (
+                <Styled.LayerList>
+                    {layers.map((layer) => (
+                        <Styled.LayerItem key={layer.id}>
+                            <Styled.LayerHeader>
+                                <GripVertical size={15} />
+                                <Styled.LayerType>{layer.type} gradient</Styled.LayerType>
+                                <Styled.LayerActions>
+                                    <Styled.IconButton type="button" aria-label="Move layer up">
+                                        <ArrowUp size={15} />
+                                    </Styled.IconButton>
+                                    <Styled.IconButton type="button" aria-label="Move layer down">
+                                        <ArrowDown size={15} />
+                                    </Styled.IconButton>
+                                    <Styled.EyeButton
+                                        type="button"
+                                        aria-label={layer.enabled ? 'Hide layer' : 'Show layer'}
                                         $enabled={layer.enabled}
-                                    />
-                                ))}
-                            </Styled.LayerSamplesWrapper>
-                        </Styled.LayerInfo>
-                    </Styled.LayerItem>
-                ))}
-            </Styled.LayerList>
+                                        onClick={() => toggleLayerVisibility(layer.id)}
+                                    >
+                                        {layer.enabled ? <Eye size={15} /> : <EyeOff size={15} />}
+                                    </Styled.EyeButton>
+                                    <Styled.IconButton type="button" aria-label="Duplicate layer">
+                                        <Copy size={15} />
+                                    </Styled.IconButton>
+                                    <Styled.IconButton
+                                        type="button"
+                                        aria-label="Delete layer"
+                                        onClick={() => removeLayer(layer.id)}
+                                    >
+                                        <Trash2 size={15} />
+                                    </Styled.IconButton>
+                                </Styled.LayerActions>
+                            </Styled.LayerHeader>
+                            <Styled.LayerInfo>
+                                <Styled.LayerName>
+                                    {layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient
+                                </Styled.LayerName>
+                                <Styled.LayerSamplesWrapper>
+                                    {layer.stops.map((stop) => (
+                                        <Styled.LayerSample
+                                            key={stop.id}
+                                            $color={stop.color}
+                                            title={`${stop.color} — ${stop.position}%`}
+                                            $enabled={layer.enabled}
+                                        />
+                                    ))}
+                                </Styled.LayerSamplesWrapper>
+                            </Styled.LayerInfo>
+                        </Styled.LayerItem>
+                    ))}
+                </Styled.LayerList>
+            ) : (
+                <Styled.NoLayers>
+                    <Layers size={28} />
+                    <Styled.NoLayerTitle>No gradient layers</Styled.NoLayerTitle>
+                    <Styled.NoLayerDescription>Add a gradient layer to get started.</Styled.NoLayerDescription>
+                </Styled.NoLayers>
+            )}
         </Panel>
     );
 });

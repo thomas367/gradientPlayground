@@ -34,10 +34,36 @@ export const AddButton = styled.button`
     }
 `;
 
+export const NoLayers = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+    border: 1px dashed var(--color-border);
+    border-radius: 10px;
+    gap: 8px;
+    text-align: center;
+`;
+
 export const LayerList = styled.div`
     display: flex;
     flex-direction: column;
     gap: 12px;
+`;
+
+export const NoLayerTitle = styled.p`
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 20px;
+`;
+
+export const NoLayerDescription = styled.p`
+    margin: 0;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    line-height: 18px;
 `;
 
 export const LayerItem = styled.div`
@@ -107,8 +133,8 @@ export const IconButton = styled.button`
 `;
 
 export const EyeButton = styled(IconButton)<{ $enabled: boolean }>`
-    background: ${(props): string => props.$enabled ? '#202b47' : '#111827'};
-    color: ${(props): string => props.$enabled ? 'var(--color-text)' : '#76829c'};
+    background: ${(props): string => (props.$enabled ? '#202b47' : '#111827')};
+    color: ${(props): string => (props.$enabled ? 'var(--color-text)' : '#76829c')};
 `;
 
 export const LayerSamplesWrapper = styled.div`
@@ -125,7 +151,7 @@ export const LayerSample = styled.div<{ $color: string; $enabled: boolean }>`
     border: 1px solid var(--color-border);
     border-radius: 8px;
     background: ${({ $color }) => $color};
-    opacity: ${(props): number => props.$enabled ? 1 : 0.4};
+    opacity: ${(props): number => (props.$enabled ? 1 : 0.4)};
 `;
 
 export const LayerInfo = styled.div`

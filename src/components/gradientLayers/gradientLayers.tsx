@@ -9,7 +9,7 @@ import * as Styled from './styles';
 const gradientTypes: GradientType[] = [GradientType.LINEAR, GradientType.RADIAL, GradientType.CONIC];
 
 export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
-    const { layers, toggleLayerVisibility, removeLayer } = gradientStore;
+    const { layers, toggleLayerVisibility, removeLayer, duplicateLayer } = gradientStore;
 
     return (
         <Panel
@@ -51,7 +51,11 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                                     >
                                         {layer.enabled ? <Eye size={15} /> : <EyeOff size={15} />}
                                     </Styled.EyeButton>
-                                    <Styled.IconButton type="button" aria-label="Duplicate layer">
+                                    <Styled.IconButton
+                                        type="button"
+                                        aria-label="Duplicate layer"
+                                        onClick={() => duplicateLayer(layer.id)}
+                                    >
                                         <Copy size={15} />
                                     </Styled.IconButton>
                                     <Styled.IconButton
@@ -83,7 +87,7 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                 </Styled.LayerList>
             ) : (
                 <Styled.NoLayers>
-                    <Layers size={28} />
+                    <Layers size={28} strokeWidth={1.5} color="#76829c" />
                     <Styled.NoLayerTitle>No gradient layers</Styled.NoLayerTitle>
                     <Styled.NoLayerDescription>Add a gradient layer to get started.</Styled.NoLayerDescription>
                 </Styled.NoLayers>

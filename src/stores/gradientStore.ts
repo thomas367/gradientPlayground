@@ -39,6 +39,24 @@ class GradientStore {
         this.selectedPresetId = null;
     };
 
+    duplicateLayer = (id: string) => {
+        const index = this.layers.findIndex((layer) => layer.id === id);
+
+        if (index === -1) return;
+
+        const layer = this.layers[index];
+        const duplicatedLayer = {
+            ...layer,
+            id: crypto.randomUUID(),
+            stops: layer.stops.map((stop) => ({
+                ...stop,
+                id: crypto.randomUUID(),
+            })) as typeof layer.stops,
+        };
+        this.layers.splice(index + 1, 0, duplicatedLayer);
+        this.selectedPresetId = null;
+    };
+
     updateLayer = (id: string, changes: Partial<GradientLayer>) => {
         const layer = this.layers.find((layer) => layer.id === id);
 

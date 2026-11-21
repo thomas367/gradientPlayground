@@ -34,7 +34,6 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                     <Styled.LayerItem key={layer.id}>
                         <Styled.LayerHeader>
                             <GripVertical size={15} />
-                            <input type="checkbox" checked={layer.enabled} readOnly />
                             <Styled.LayerType>{layer.type} gradient</Styled.LayerType>
                             <Styled.LayerActions>
                                 <Styled.IconButton type="button" aria-label="Move layer up">

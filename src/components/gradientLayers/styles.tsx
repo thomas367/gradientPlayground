@@ -21,7 +21,6 @@ export const AddButton = styled.button`
     font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
-
     cursor: pointer;
 
     &:hover {
@@ -135,9 +134,4 @@ export const LayerName = styled.span`
     color: var(--color-text);
     font-size: 13px;
     font-weight: 600;
-`;
-
-export const LayerDetails = styled.span`
-    color: var(--color-text-secondary);
-    font-size: 11px;
 `;

@@ -26,6 +26,14 @@ class GradientStore {
         this.selectedPresetId = preset.id;
     };
 
+    toggleLayerVisibility = (id: string) => {
+        const layer = this.layers.find((layer) => layer.id === id);
+
+        if (!layer) return;
+
+        this.updateLayer(id, { enabled: !layer.enabled });
+    };
+
     updateLayer = (id: string, changes: Partial<GradientLayer>) => {
         const layer = this.layers.find((layer) => layer.id === id);
 

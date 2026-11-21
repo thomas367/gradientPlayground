@@ -106,6 +106,11 @@ export const IconButton = styled.button`
     }
 `;
 
+export const EyeButton = styled(IconButton)<{ $enabled: boolean }>`
+    background: ${(props): string => props.$enabled ? '#202b47' : '#111827'};
+    color: ${(props): string => props.$enabled ? 'var(--color-text)' : '#76829c'};
+`;
+
 export const LayerSamplesWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -113,13 +118,14 @@ export const LayerSamplesWrapper = styled.div`
     margin-top: 8px;
 `;
 
-export const LayerSample = styled.div<{ $color: string }>`
+export const LayerSample = styled.div<{ $color: string; $enabled: boolean }>`
     width: 38px;
     height: 38px;
     flex-shrink: 0;
     border: 1px solid var(--color-border);
     border-radius: 8px;
     background: ${({ $color }) => $color};
+    opacity: ${(props): number => props.$enabled ? 1 : 0.4};
 `;
 
 export const LayerInfo = styled.div`

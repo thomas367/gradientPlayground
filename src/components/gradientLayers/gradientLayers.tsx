@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, Copy, Trash2 } from 'lucide-react';
+import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, EyeOff, Copy, Trash2 } from 'lucide-react';
 import { Panel } from 'components/panel/panel';
 import { gradientStore } from 'stores/gradientStore';
 import { GradientType } from 'types/gradient';
@@ -9,7 +9,7 @@ import * as Styled from './styles';
 const gradientTypes: GradientType[] = [GradientType.LINEAR, GradientType.RADIAL, GradientType.CONIC];
 
 export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
-    const { layers } = gradientStore;
+    const { layers, toggleLayerVisibility } = gradientStore;
 
     return (
         <Panel
@@ -42,9 +42,14 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                                 <Styled.IconButton type="button" aria-label="Move layer down">
                                     <ArrowDown size={15} />
                                 </Styled.IconButton>
-                                <Styled.IconButton type="button" aria-label="Toggle visibility">
-                                    <Eye size={15} />
-                                </Styled.IconButton>
+                                <Styled.EyeButton
+                                    type="button"
+                                    aria-label={layer.enabled ? 'Hide layer' : 'Show layer'}
+                                    $enabled={layer.enabled}
+                                    onClick={() => toggleLayerVisibility(layer.id)}
+                                >
+                                    {layer.enabled ? <Eye size={15} /> : <EyeOff size={15} />}
+                                </Styled.EyeButton>
                                 <Styled.IconButton type="button" aria-label="Duplicate layer">
                                     <Copy size={15} />
                                 </Styled.IconButton>
@@ -63,6 +68,7 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                                         key={stop.id}
                                         $color={stop.color}
                                         title={`${stop.color} — ${stop.position}%`}
+                                        $enabled={layer.enabled}
                                     />
                                 ))}
                             </Styled.LayerSamplesWrapper>

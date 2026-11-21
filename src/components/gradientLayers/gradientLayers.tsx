@@ -17,11 +17,7 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
             action={
                 <Styled.ButtonsWrapper>
                     {gradientTypes.map((type) => (
-                        <Styled.AddButton
-                            key={type}
-                            type="button"
-                            onClick={() => addLayer(type)}
-                        >
+                        <Styled.AddButton key={type} type="button" onClick={() => addLayer(type)}>
                             <Plus size={15} />
                             {type.charAt(0).toUpperCase() + type.slice(1)}
                         </Styled.AddButton>

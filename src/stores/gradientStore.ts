@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
-import type { GradientLayer, GradientPreset } from 'types/gradient';
+import type { GradientLayer, GradientPreset, GradientType } from 'types/gradient';
 import { presets } from 'data/presets';
-import { generateBackground, generateCSS } from 'utils/gradient';
+import { generateBackground, generateCSS, createGradient } from 'utils/gradient';
 
 class GradientStore {
     layers: GradientLayer[] = [];
@@ -24,6 +24,13 @@ class GradientStore {
     selectPreset = (preset: GradientPreset) => {
         this.layers = preset.layers;
         this.selectedPresetId = preset.id;
+    };
+
+    addLayer = (type: GradientType) => {
+        const layer = createGradient(type);
+
+        this.layers.push(layer);
+        this.selectedPresetId = null;
     };
 
     toggleLayerVisibility = (id: string) => {

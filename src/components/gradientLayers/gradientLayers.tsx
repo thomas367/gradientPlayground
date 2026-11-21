@@ -9,7 +9,7 @@ import * as Styled from './styles';
 const gradientTypes: GradientType[] = [GradientType.LINEAR, GradientType.RADIAL, GradientType.CONIC];
 
 export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
-    const { layers, toggleLayerVisibility, removeLayer, duplicateLayer, moveLayer } = gradientStore;
+    const { layers, toggleLayerVisibility, removeLayer, duplicateLayer, moveLayer, addLayer } = gradientStore;
 
     return (
         <Panel
@@ -20,7 +20,7 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                         <Styled.AddButton
                             key={type}
                             type="button"
-                            // onClick={() => console.log('add layer)}
+                            onClick={() => addLayer(type)}
                         >
                             <Plus size={15} />
                             {type.charAt(0).toUpperCase() + type.slice(1)}

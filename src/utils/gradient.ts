@@ -1,4 +1,4 @@
-import { GradientType } from 'types/gradient';
+import { GradientType, Shape } from 'types/gradient';
 import type { ColorStop, GradientLayer } from 'types/gradient';
 
 const formatStops = (stops: ColorStop[], opacity: number, type: GradientLayer['type']): string =>
@@ -37,4 +37,34 @@ export const generateCSS = (layers: GradientLayer[]): string => {
     const background = generateBackground(layers);
 
     return background ? `background: ${background};` : 'background: none;';
+};
+
+export const createGradient = (type: GradientType): GradientLayer => {
+    const newLayer: Pick<GradientLayer, 'id' | 'enabled' | 'opacity' | 'stops'> = {
+        id: crypto.randomUUID(),
+        enabled: true,
+        opacity: 1,
+        stops: [
+            {
+                id: crypto.randomUUID(),
+                color: '#9566ff',
+                position: 0,
+            },
+            {
+                id: crypto.randomUUID(),
+                color: '#ec4899',
+                position: 100,
+            },
+        ],
+    };
+
+    switch (type) {
+        case GradientType.LINEAR:
+            return { ...newLayer, type, angle: 135 };
+
+        case GradientType.RADIAL:
+            return { ...newLayer, type, shape: Shape.CIRCLE, position: { x: 50, y: 50 } };
+        case GradientType.CONIC:
+            return { ...newLayer, type, angle: 0, position: { x: 50, y: 50 } };
+    }
 };

@@ -68,3 +68,22 @@ export const createGradient = (type: GradientType): GradientLayer => {
             return { ...newLayer, type, angle: 0, position: { x: 50, y: 50 } };
     }
 };
+
+export const convertGradient = (layer: GradientLayer, type: GradientType): GradientLayer => {
+    const baseLayerProperties = {
+        id: layer.id,
+        enabled: layer.enabled,
+        opacity: layer.opacity,
+        stops: layer.stops,
+    };
+
+      switch (type) {
+        case GradientType.LINEAR:
+            return { ...baseLayerProperties, type, angle: 135 };
+
+        case GradientType.RADIAL:
+            return { ...baseLayerProperties, type, shape: Shape.CIRCLE, position: { x: 50, y: 50 } };
+        case GradientType.CONIC:
+            return { ...baseLayerProperties, type, angle: 0, position: { x: 50, y: 50 } };
+    }
+};

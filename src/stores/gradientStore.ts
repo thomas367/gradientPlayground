@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import type { GradientLayer, GradientPreset, GradientType } from 'types/gradient';
 import { presets } from 'data/presets';
-import { generateBackground, generateCSS, createGradient } from 'utils/gradient';
+import { generateBackground, generateCSS, createGradient, convertGradient } from 'utils/gradient';
 
 class GradientStore {
     layers: GradientLayer[] = [];
@@ -35,7 +35,6 @@ class GradientStore {
 
     toggleLayerVisibility = (id: string) => {
         const layer = this.layers.find((layer) => layer.id === id);
-
         if (!layer) return;
 
         this.updateLayer(id, { enabled: !layer.enabled });
@@ -48,7 +47,6 @@ class GradientStore {
 
     duplicateLayer = (id: string) => {
         const index = this.layers.findIndex((layer) => layer.id === id);
-
         if (index === -1) return;
 
         const layer = this.layers[index];
@@ -78,12 +76,19 @@ class GradientStore {
     };
 
     changeLayerType = (id: string, type: GradientType) => {
-        console.log(id, type);
+        const index = this.layers.findIndex((layer) => layer.id === id);
+        if (index === -1) return;
+
+        const layer = this.layers[index];
+        if (layer.type === type) return;
+
+        const convertedLayer = convertGradient(layer, type);
+        this.layers[index] = convertedLayer;
+        this.selectedPresetId = null;
     };
 
     updateLayer = (id: string, changes: Partial<GradientLayer>) => {
         const layer = this.layers.find((layer) => layer.id === id);
-
         if (!layer) return;
 
         Object.assign(layer, changes);

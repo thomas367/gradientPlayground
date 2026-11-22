@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, EyeOff, Copy, Layers, Trash2 } from 'lucide-react';
 import { Panel } from 'components/panel/panel';
 import { LinearControls } from 'components/gradientLayers/controls/linearControls';
+import { RadialControls } from 'components/gradientLayers/controls/radialControls';
 import { gradientStore } from 'stores/gradientStore';
 import { GradientType } from 'types/gradient';
 
@@ -89,6 +90,7 @@ export const GradientLayers = observer(function GradientLayers(): React.JSX.Elem
                             </Styled.LayerHeader>
                             <Styled.LayerInfo>
                                 {layer.type === GradientType.LINEAR && <LinearControls layer={layer} />}
+                                {layer.type === GradientType.RADIAL && <RadialControls layer={layer} />}
                                 <Styled.LayerName>
                                     {layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient
                                 </Styled.LayerName>

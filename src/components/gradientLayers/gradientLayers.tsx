@@ -93,9 +93,6 @@ export const GradientLayers = observer(function GradientLayers(): React.JSX.Elem
                                 {layer.type === GradientType.LINEAR && <LinearControls layer={layer} />}
                                 {layer.type === GradientType.RADIAL && <RadialControls layer={layer} />}
                                 {layer.type === GradientType.CONIC && <ConicControls layer={layer} />}
-                                <Styled.LayerName>
-                                    {layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient
-                                </Styled.LayerName>
                                 <Styled.LayerSamplesWrapper>
                                     {layer.stops.map((stop) => (
                                         <Styled.LayerSample

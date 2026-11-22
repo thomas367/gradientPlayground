@@ -197,9 +197,3 @@ export const LayerInfo = styled.div`
     gap: 4px;
     min-width: 0;
 `;
-
-export const LayerName = styled.span`
-    color: var(--color-text);
-    font-size: 13px;
-    font-weight: 600;
-`;

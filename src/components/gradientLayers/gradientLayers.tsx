@@ -1,6 +1,8 @@
+import type React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, EyeOff, Copy, Layers, Trash2 } from 'lucide-react';
 import { Panel } from 'components/panel/panel';
+import { LinearControls } from 'components/gradientLayers/controls/linearControls';
 import { gradientStore } from 'stores/gradientStore';
 import { GradientType } from 'types/gradient';
 
@@ -8,7 +10,7 @@ import * as Styled from './styles';
 
 const gradientTypes: GradientType[] = [GradientType.LINEAR, GradientType.RADIAL, GradientType.CONIC];
 
-export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
+export const GradientLayers = observer(function GradientLayers(): React.JSX.Element {
     const { layers, toggleLayerVisibility, removeLayer, duplicateLayer, moveLayer, addLayer, changeLayerType } =
         gradientStore;
 
@@ -36,7 +38,9 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                                     <Styled.LayerTypeSelect
                                         aria-label="Layer type"
                                         value={layer.type}
-                                        onChange={(event) => changeLayerType(layer.id, event.target.value as GradientType)}
+                                        onChange={(event) =>
+                                            changeLayerType(layer.id, event.target.value as GradientType)
+                                        }
                                     >
                                         <option value={GradientType.LINEAR}>Linear gradient</option>
                                         <option value={GradientType.RADIAL}>Radial gradient</option>
@@ -84,6 +88,7 @@ export const GradientLayers = observer(function CSSOutput(): React.JSX.Element {
                                 </Styled.LayerActions>
                             </Styled.LayerHeader>
                             <Styled.LayerInfo>
+                                {layer.type === GradientType.LINEAR && <LinearControls layer={layer} />}
                                 <Styled.LayerName>
                                     {layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient
                                 </Styled.LayerName>

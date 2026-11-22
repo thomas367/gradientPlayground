@@ -77,7 +77,7 @@ export const convertGradient = (layer: GradientLayer, type: GradientType): Gradi
         stops: layer.stops,
     };
 
-      switch (type) {
+    switch (type) {
         case GradientType.LINEAR:
             return { ...baseLayerProperties, type, angle: 135 };
 

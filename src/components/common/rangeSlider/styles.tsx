@@ -40,7 +40,6 @@ export const Slider = styled.input<{ $progress: number }>`
         #f1f1f5 100%
     );
 
-
     &:focus-visible {
         outline: 2px solid var(--color-primary-hover);
         outline-offset: 6px;

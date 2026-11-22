@@ -13,7 +13,15 @@ interface RangeInputProps {
     onChange: (value: number) => void;
 }
 
-export function RangeSlider({ label, value, min, max, step = 1, unit = '', onChange }: RangeInputProps): React.JSX.Element {
+export function RangeSlider({
+    label,
+    value,
+    min,
+    max,
+    step = 1,
+    unit = '',
+    onChange,
+}: RangeInputProps): React.JSX.Element {
     const id = useId();
     const progress = max > min ? ((value - min) / (max - min)) * 100 : 0;
 
@@ -39,4 +47,4 @@ export function RangeSlider({ label, value, min, max, step = 1, unit = '', onCha
             </Styled.SliderRow>
         </Styled.Wrapper>
     );
-};
+}

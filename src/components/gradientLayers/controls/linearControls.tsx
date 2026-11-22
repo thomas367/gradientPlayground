@@ -19,7 +19,14 @@ export const LinearControls = observer(function LinearControls({ layer }: Linear
 
     return (
         <Styled.ControlsWrapper>
-            <RangeSlider label="Angle" value={layer.angle} min={0} max={360} unit="°" onChange={(value) => handleAngleChange(value)} />
+            <RangeSlider
+                label="Angle"
+                value={layer.angle}
+                min={0}
+                max={360}
+                unit="°"
+                onChange={(value) => handleAngleChange(value)}
+            />
         </Styled.ControlsWrapper>
     );
 });

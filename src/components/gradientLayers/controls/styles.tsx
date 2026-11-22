@@ -22,6 +22,13 @@ export const RadialControlsWrapper = styled.div`
     }
 `;
 
+export const ConicControlsWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+`;
+
 export const SelectContainer = styled.div`
     display: flex;
     flex-direction: column;

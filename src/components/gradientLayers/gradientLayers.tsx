@@ -4,6 +4,7 @@ import { Plus, GripVertical, ArrowUp, ArrowDown, Eye, EyeOff, Copy, Layers, Tras
 import { Panel } from 'components/panel/panel';
 import { LinearControls } from 'components/gradientLayers/controls/linearControls';
 import { RadialControls } from 'components/gradientLayers/controls/radialControls';
+import { ConicControls } from 'components/gradientLayers/controls/conicControls';
 import { gradientStore } from 'stores/gradientStore';
 import { GradientType } from 'types/gradient';
 
@@ -91,6 +92,7 @@ export const GradientLayers = observer(function GradientLayers(): React.JSX.Elem
                             <Styled.LayerInfo>
                                 {layer.type === GradientType.LINEAR && <LinearControls layer={layer} />}
                                 {layer.type === GradientType.RADIAL && <RadialControls layer={layer} />}
+                                {layer.type === GradientType.CONIC && <ConicControls layer={layer} />}
                                 <Styled.LayerName>
                                     {layer.type.charAt(0).toUpperCase() + layer.type.slice(1)} gradient
                                 </Styled.LayerName>

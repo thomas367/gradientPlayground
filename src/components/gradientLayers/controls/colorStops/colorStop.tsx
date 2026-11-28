@@ -66,6 +66,7 @@ export const ColorStop = observer(function ColorStop({
                     max={100}
                     step={1}
                     disabled={!enabled}
+                    showValue={false}
                     onChange={(value) => handleOpacityChange(value)}
                 />
             </Styled.OpacityControls>

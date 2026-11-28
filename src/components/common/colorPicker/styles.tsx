@@ -5,14 +5,13 @@ export const Wrapper = styled.div`
     flex-shrink: 0;
 `;
 
-export const ColorSample = styled.button<{ $color: string }>`
+export const ColorSample = styled.button`
     display: block;
     width: 28px;
     height: 28px;
     padding: 0;
     border: 1px solid var(--color-secondary-border);
     border-radius: 5px;
-    background: ${({ $color }) => $color};
     cursor: pointer;
 
     &:disabled {

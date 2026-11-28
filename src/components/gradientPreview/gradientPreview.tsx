@@ -64,7 +64,13 @@ export const GradientPreview = observer(function GradientPreview(): React.JSX.El
             )}
 
             <Styled.Stage>
-                <Styled.Preview $ratio={ratio} $background={background} />
+                <Styled.Preview
+                    style={{
+                        aspectRatio: ratio,
+                        width: ratio >= 1 ? 'min(100%, 400px)' : `min(100%, ${400 * ratio}px)`,
+                        background: background || 'transparent',
+                    }}
+                />
             </Styled.Stage>
 
             <Styled.Hint>

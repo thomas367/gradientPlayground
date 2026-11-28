@@ -20,13 +20,10 @@ export const Stage = styled.div`
         -10px 0;
 `;
 
-export const Preview = styled.div<{ $ratio: number; $background: string }>`
-    aspect-ratio: ${({ $ratio }) => $ratio};
-    width: ${({ $ratio }) => ($ratio >= 1 ? 'min(100%, 400px)' : `min(100%, ${400 * $ratio}px)`)};
+export const Preview = styled.div`
     max-height: 400px;
     border: 1px solid #a5a4ed;
     border-radius: 20px;
-    background: ${({ $background }) => $background || 'transparent'};
 `;
 
 export const AspectRatioSelect = styled.select`

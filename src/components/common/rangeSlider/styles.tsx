@@ -22,7 +22,7 @@ export const SliderRow = styled.div`
     width: 100%;
 `;
 
-export const Slider = styled.input<{ $progress: number }>`
+export const Slider = styled.input`
     appearance: none;
     flex: 1;
     width: 100%;
@@ -32,17 +32,36 @@ export const Slider = styled.input<{ $progress: number }>`
     border: none;
     border-radius: 999px;
     cursor: pointer;
-    background: linear-gradient(
-        to right,
-        #ac85ff 0%,
-        #803bff ${({ $progress }) => $progress}%,
-        #f1f1f5 ${({ $progress }) => $progress}%,
-        #f1f1f5 100%
-    );
-
     &:focus-visible {
         outline: 2px solid var(--color-primary-hover);
         outline-offset: 6px;
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border: 2px solid #803bff;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
+        cursor: grab;
+    }
+
+    &::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+        border: 2px solid #803bff;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
+        cursor: grab;
+    }
+
+    &:active::-webkit-slider-thumb,
+    &:active::-moz-range-thumb {
+        cursor: grabbing;
     }
 
     &:disabled {

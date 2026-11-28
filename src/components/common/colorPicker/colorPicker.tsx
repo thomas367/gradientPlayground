@@ -39,7 +39,7 @@ export function ColorPicker({ color, disabled = false, onChange }: ColorPickerPr
         <Styled.Wrapper ref={pickerRef}>
             <Styled.ColorSample
                 type="button"
-                $color={color}
+                style={{ backgroundColor: color }}
                 disabled={disabled}
                 aria-label={`Choose color, current color ${color}`}
                 aria-haspopup="dialog"

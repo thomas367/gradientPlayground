@@ -1,7 +1,15 @@
 import { makeAutoObservable } from 'mobx';
 import type { GradientLayer, GradientPreset, GradientType, ColorStop } from 'types/gradient';
 import { presets } from 'data/presets';
-import { generateBackground, generateCSS, createGradient, convertGradient, createColorStop } from 'utils/gradient';
+import {
+    generateBackground,
+    generateCSS,
+    createGradient,
+    convertGradient,
+    createColorStop,
+    cloneGradient,
+    getNewColorStopPosition,
+} from 'utils/gradient';
 
 class GradientStore {
     layers: GradientLayer[] = [];
@@ -22,7 +30,7 @@ class GradientStore {
     }
 
     selectPreset = (preset: GradientPreset) => {
-        this.layers = preset.layers;
+        this.layers = preset.layers.map(cloneGradient);
         this.selectedPresetId = preset.id;
     };
 
@@ -41,7 +49,10 @@ class GradientStore {
     };
 
     removeLayer = (id: string) => {
-        this.layers = this.layers.filter((layer) => layer.id !== id);
+        const index = this.layers.findIndex((layer) => layer.id === id);
+        if (index === -1) return;
+
+        this.layers.splice(index, 1);
         this.selectedPresetId = null;
     };
 
@@ -49,15 +60,11 @@ class GradientStore {
         const index = this.layers.findIndex((layer) => layer.id === id);
         if (index === -1) return;
 
-        const layer = this.layers[index];
-        const duplicatedLayer = {
-            ...layer,
-            id: crypto.randomUUID(),
-            stops: layer.stops.map((stop) => ({
-                ...stop,
-                id: crypto.randomUUID(),
-            })),
-        };
+        const duplicatedLayer = cloneGradient(this.layers[index]);
+        duplicatedLayer.id = crypto.randomUUID();
+        duplicatedLayer.stops.forEach((stop) => {
+            stop.id = crypto.randomUUID();
+        });
         this.layers.splice(index + 1, 0, duplicatedLayer);
         this.selectedPresetId = null;
     };
@@ -91,7 +98,7 @@ class GradientStore {
         const layer = this.layers.find((layer) => layer.id === layerId);
         if (!layer) return;
 
-        const newColor = createColorStop();
+        const newColor = createColorStop(getNewColorStopPosition(layer.stops));
         layer.stops.push(newColor);
 
         this.selectedPresetId = null;

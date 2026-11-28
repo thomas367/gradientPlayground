@@ -21,7 +21,7 @@ export const applyOpacity = (hex: string, opacity: number): string => {
 };
 
 const formatStops = (stops: ColorStop[], type: GradientLayer['type']): string =>
-    [...stops]
+    (stops.length === 1 ? [stops[0], stops[0]] : [...stops])
         .sort((a, b) => a.position - b.position)
         .map(({ color, opacity, position }) => {
             const unit = type === GradientType.CONIC ? 'deg' : '%';
@@ -32,7 +32,7 @@ const formatStops = (stops: ColorStop[], type: GradientLayer['type']): string =>
         .join(', ');
 
 export const generateGradient = (layer: GradientLayer): string => {
-    if (layer.stops.length < 2) return '';
+    if (layer.stops.length === 0) return '';
 
     const stops = formatStops(layer.stops, layer.type);
 
@@ -110,9 +110,39 @@ export const convertGradient = (layer: GradientLayer, type: GradientType): Gradi
     }
 };
 
-export const createColorStop = (): ColorStop => ({
+export const cloneGradient = (layer: GradientLayer): GradientLayer => {
+    const stops = layer.stops.map((stop) => ({ ...stop }));
+
+    if (layer.type === GradientType.LINEAR) return { ...layer, stops };
+    return { ...layer, stops, position: { ...layer.position } };
+};
+
+export const createColorStop = (position = 50): ColorStop => ({
     id: crypto.randomUUID(),
     color: '#ffffff',
-    position: 50,
+    position,
     opacity: 1,
 });
+
+export const getNewColorStopPosition = (stops: ColorStop[]): number => {
+    if (!stops.length) return 0;
+
+    const positions = stops.map(({ position }) => position).sort((a, b) => a - b);
+
+    if (positions[0] > 0) return 0;
+    if (positions[positions.length - 1] < 100) return 100;
+
+    let maxGap = 0;
+    let position = 50;
+
+    for (let i = 1; i < positions.length; i++) {
+        const gap = positions[i] - positions[i - 1];
+
+        if (gap > maxGap) {
+            maxGap = gap;
+            position = positions[i - 1] + gap / 2;
+        }
+    }
+
+    return position;
+};

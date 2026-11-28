@@ -83,3 +83,22 @@ export const PositionSuffix = styled.span`
     font-size: 12px;
     pointer-events: none;
 `;
+
+export const OpacityControls = styled.div`
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 10px;
+    min-width: 0;
+`;
+
+export const OpacityLabel = styled.span`
+    flex-shrink: 0;
+    min-width: 88px;
+    color: var(--color-text-secondary);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+`;

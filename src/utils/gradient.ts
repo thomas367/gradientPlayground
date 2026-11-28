@@ -1,14 +1,33 @@
 import { GradientType, Shape } from 'types/gradient';
 import type { ColorStop, GradientLayer } from 'types/gradient';
 
+export const applyOpacity = (hex: string, opacity: number): string => {
+    if (!/^#(?:[\da-f]{3,4}|[\da-f]{6}|[\da-f]{8})$/i.test(hex)) {
+        throw new Error(`Unsupported hex color: ${hex}`);
+    }
+
+    if (!Number.isFinite(opacity)) {
+        throw new RangeError(`Opacity must be finite: ${opacity}`);
+    }
+
+    const digits = hex.slice(1);
+    const normalized = digits.length <= 4 ? [...digits].map((digit) => digit + digit).join('') : digits;
+    const colorAlpha = normalized.length === 8 ? Number.parseInt(normalized.slice(6, 8), 16) : 255;
+    const alphaHex = Math.round(colorAlpha * Math.max(0, Math.min(1, opacity)))
+        .toString(16)
+        .padStart(2, '0');
+
+    return `#${normalized.slice(0, 6)}${alphaHex}`;
+};
+
 const formatStops = (stops: ColorStop[], type: GradientLayer['type']): string =>
     [...stops]
         .sort((a, b) => a.position - b.position)
-        .map(({ color, position }) => {
+        .map(({ color, opacity, position }) => {
             const unit = type === GradientType.CONIC ? 'deg' : '%';
             const value = type === GradientType.CONIC ? position * 3.6 : position;
 
-            return `${color} ${Number(value.toFixed(3))}${unit}`;
+            return `${applyOpacity(color, opacity)} ${Number(value.toFixed(3))}${unit}`;
         })
         .join(', ');
 

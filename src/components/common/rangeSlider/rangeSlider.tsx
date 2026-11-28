@@ -4,12 +4,13 @@ import type React from 'react';
 import * as Styled from './styles';
 
 interface RangeInputProps {
-    label: string;
+    label?: string;
     value: number;
     min: number;
     max: number;
     step?: number;
     unit?: string;
+    disabled?: boolean;
     onChange: (value: number) => void;
 }
 
@@ -20,6 +21,7 @@ export function RangeSlider({
     max,
     step = 1,
     unit = '',
+    disabled = false,
     onChange,
 }: RangeInputProps): React.JSX.Element {
     const id = useId();
@@ -27,7 +29,7 @@ export function RangeSlider({
 
     return (
         <Styled.Wrapper>
-            <Styled.Label htmlFor={id}>{label}</Styled.Label>
+            {label && <Styled.Label htmlFor={id}>{label}</Styled.Label>}
             <Styled.SliderRow>
                 <Styled.Slider
                     id={id}
@@ -36,6 +38,7 @@ export function RangeSlider({
                     max={max}
                     step={step}
                     value={value}
+                    disabled={disabled}
                     $progress={progress}
                     aria-valuetext={`${value}${unit}`}
                     onChange={(event) => onChange(event.target.valueAsNumber)}

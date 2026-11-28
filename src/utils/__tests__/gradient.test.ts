@@ -1,4 +1,4 @@
-import { generateBackground, generateCSS, generateGradient } from 'utils/gradient';
+import { applyOpacity, generateBackground, generateCSS, generateGradient } from 'utils/gradient';
 import type { GradientLayer } from 'types/gradient';
 import { GradientType, Shape } from 'types/gradient';
 
@@ -14,8 +14,23 @@ const linear: GradientLayer = {
 };
 
 describe('Gradient CSS generator', () => {
+    test('applies stop opacity while preserving existing color alpha', () => {
+        expect(applyOpacity('#ff0000', 0.5)).toBe('#ff000080');
+        expect(applyOpacity('#ff000080', 0.5)).toBe('#ff000040');
+        expect(applyOpacity('#ff0000', 1)).toBe('#ff0000ff');
+    });
+
+    test('includes stop opacity in generated CSS', () => {
+        const partlyTransparent: GradientLayer = {
+            ...linear,
+            stops: [{ ...linear.stops[0], opacity: 0.5 }, linear.stops[1]],
+        };
+
+        expect(generateGradient(partlyTransparent)).toBe('linear-gradient(90deg, #ff000080 0%, #0000ffff 100%)');
+    });
+
     test('generates a linear gradient', () => {
-        expect(generateGradient(linear)).toBe('linear-gradient(90deg, #ff0000 0%, #0000ff 100%)');
+        expect(generateGradient(linear)).toBe('linear-gradient(90deg, #ff0000ff 0%, #0000ffff 100%)');
     });
 
     test('generates a radial gradient', () => {
@@ -26,7 +41,7 @@ describe('Gradient CSS generator', () => {
             position: { x: 30, y: 70 },
         };
 
-        expect(generateGradient(radial)).toBe('radial-gradient(circle at 30% 70%, #ff0000 0%, #0000ff 100%)');
+        expect(generateGradient(radial)).toBe('radial-gradient(circle at 30% 70%, #ff0000ff 0%, #0000ffff 100%)');
     });
 
     test('generates a conic gradient', () => {
@@ -37,7 +52,7 @@ describe('Gradient CSS generator', () => {
             position: { x: 50, y: 50 },
         };
 
-        expect(generateGradient(conic)).toBe('conic-gradient(from 45deg at 50% 50%, #ff0000 0deg, #0000ff 360deg)');
+        expect(generateGradient(conic)).toBe('conic-gradient(from 45deg at 50% 50%, #ff0000ff 0deg, #0000ffff 360deg)');
     });
 
     test('excludes disabled layers', () => {

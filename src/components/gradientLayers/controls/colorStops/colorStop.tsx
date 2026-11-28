@@ -4,6 +4,7 @@ import { gradientStore } from 'stores/gradientStore';
 import type { ColorStop as ColorStopProp } from 'types/gradient';
 import { GradientType } from 'types/gradient';
 import { ColorPicker } from 'components/common/colorPicker/colorPicker';
+import { RangeSlider } from 'components/common/rangeSlider/rangeSlider';
 
 import * as Styled from './styles';
 
@@ -21,6 +22,7 @@ export const ColorStop = observer(function ColorStop({
     stop,
 }: ColorStopProps): React.JSX.Element {
     const isConic = gradientType === GradientType.CONIC;
+    const opacity = Math.round(stop.opacity * 100);
     const { updateColorStop } = gradientStore;
 
     const handlePositionChange = (value: number) => {
@@ -34,6 +36,10 @@ export const ColorStop = observer(function ColorStop({
 
     const handleColorChange = (color: string) => {
         updateColorStop(layerId, stop.id, { color });
+    };
+
+    const handleOpacityChange = (opacity: number) => {
+        updateColorStop(layerId, stop.id, { opacity: opacity / 100 });
     };
 
     return (
@@ -52,6 +58,17 @@ export const ColorStop = observer(function ColorStop({
                 />
                 <Styled.PositionSuffix aria-hidden="true">{isConic ? '°' : '%'}</Styled.PositionSuffix>
             </Styled.PositionWrapper>
+            <Styled.OpacityControls>
+                <Styled.OpacityLabel>Opacity {opacity}%</Styled.OpacityLabel>
+                <RangeSlider
+                    value={opacity}
+                    min={0}
+                    max={100}
+                    step={1}
+                    disabled={!enabled}
+                    onChange={(value) => handleOpacityChange(value)}
+                />
+            </Styled.OpacityControls>
         </Styled.ColorStopRow>
     );
 });

@@ -44,6 +44,19 @@ export const Slider = styled.input<{ $progress: number }>`
         outline: 2px solid var(--color-primary-hover);
         outline-offset: 6px;
     }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    &:disabled::-webkit-slider-thumb {
+        cursor: not-allowed;
+    }
+
+    &:disabled::-moz-range-thumb {
+        cursor: not-allowed;
+    }
 `;
 
 export const Value = styled.output`

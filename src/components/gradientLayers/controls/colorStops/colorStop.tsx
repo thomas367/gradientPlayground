@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { gradientStore } from 'stores/gradientStore';
 import type { ColorStop as ColorStopProp } from 'types/gradient';
 import { GradientType } from 'types/gradient';
+import { ColorPicker } from 'components/common/colorPicker/colorPicker';
 
 import * as Styled from './styles';
 
@@ -31,9 +32,13 @@ export const ColorStop = observer(function ColorStop({
         updateColorStop(layerId, stop.id, { position });
     };
 
+    const handleColorChange = (color: string) => {
+        updateColorStop(layerId, stop.id, { color });
+    };
+
     return (
         <Styled.ColorStopRow>
-            <Styled.ColorSample $color={stop.color} $enabled={enabled} />
+            <ColorPicker color={stop.color} disabled={!enabled} onChange={handleColorChange} />
             <Styled.PositionWrapper>
                 <Styled.PositionInput
                     aria-label="Color stop position"

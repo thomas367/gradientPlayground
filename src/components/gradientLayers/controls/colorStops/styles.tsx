@@ -36,16 +36,6 @@ export const ColorStopRow = styled.div`
     width: 100%;
 `;
 
-export const ColorSample = styled.div<{ $color: string; $enabled: boolean }>`
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-    border: 1px solid var(--color-secondary-border);
-    border-radius: 5px;
-    background: ${({ $color }) => $color};
-    opacity: ${(props): number => (props.$enabled ? 1 : 0.4)};
-`;
-
 export const PositionWrapper = styled.div`
     position: relative;
     width: 72px;

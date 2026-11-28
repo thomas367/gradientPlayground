@@ -36,9 +36,9 @@ export const ColorStops = observer(function ColorStops({ layer }: ColorStopsProp
                 </>
             ) : (
                 <Styled.NoColorStops>
-                      <Palette size={20} strokeWidth={1.5} color="#76829c" />
-                    <Styled.NoColorStopTitle>No gradient layers</Styled.NoColorStopTitle>
-                    <Styled.NoColorStopDescription>Add a gradient layer to get started.</Styled.NoColorStopDescription>
+                    <Palette size={20} strokeWidth={1.5} color="#76829c" />
+                    <Styled.NoColorStopTitle>No color stops</Styled.NoColorStopTitle>
+                    <Styled.NoColorStopDescription>Add a color stop to get started.</Styled.NoColorStopDescription>
                 </Styled.NoColorStops>
             )}
             <Styled.AddColorStopButton type="button" disabled={!layer.enabled} onClick={() => addColorStop(layer.id)}>

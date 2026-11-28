@@ -80,6 +80,7 @@ export const LayerItem = styled.div`
 
 export const LayerHeader = styled.div`
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
     min-width: 0;
@@ -90,6 +91,7 @@ export const LayerTypeSelectWrapper = styled.div`
     display: inline-flex;
     align-items: center;
     width: 150px;
+    max-width: 100%;
 `;
 
 export const LayerTypeSelect = styled.select`
@@ -131,6 +133,7 @@ export const LayerTypeChevron = styled(ChevronDown)`
 
 export const LayerActions = styled.div`
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 7px;
     margin-left: auto;
@@ -150,7 +153,7 @@ export const IconButton = styled.button`
 
     cursor: pointer;
 
-    &:hover {
+    &:hover:not(:disabled) {
         background: #2d3a5b;
         border-color: var(--color-primary);
     }

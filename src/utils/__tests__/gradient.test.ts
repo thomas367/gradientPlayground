@@ -63,10 +63,15 @@ describe('Gradient CSS generator', () => {
         expect(generateBackground([{ ...linear, enabled: false }])).toBe('');
     });
 
-    test('omits layers with fewer than two stops from generated CSS', () => {
+    test('omits layers without color stops from generated CSS', () => {
         expect(generateGradient({ ...linear, stops: [] })).toBe('');
-        expect(generateGradient({ ...linear, stops: [linear.stops[0]] })).toBe('');
         expect(generateCSS([{ ...linear, stops: [] }])).toBe('background: none;');
+    });
+
+    test('generates a solid-color gradient from a single stop', () => {
+        expect(generateGradient({ ...linear, stops: [linear.stops[0]] })).toBe(
+            'linear-gradient(90deg, #ff0000ff 0%, #ff0000ff 0%)',
+        );
     });
 
     test('preserves gradient layer order', () => {

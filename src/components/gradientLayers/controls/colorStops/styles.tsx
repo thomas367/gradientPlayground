@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+    container-type: inline-size;
+    container-name: color-stops;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -32,6 +35,12 @@ export const ColorStopRow = styled.div`
     align-items: center;
     gap: 10px;
     width: 100%;
+
+    @container color-stops (max-width: 340px) {
+        display: grid;
+        grid-template-columns: 28px 72px minmax(0, 1fr) 28px;
+        gap: 8px;
+    }
 `;
 
 export const PositionWrapper = styled.div`
@@ -87,6 +96,11 @@ export const OpacityControls = styled.div`
     flex: 1;
     gap: 10px;
     min-width: 0;
+
+    @container color-stops (max-width: 340px) {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
 `;
 
 export const OpacityLabel = styled.span`
@@ -141,6 +155,11 @@ export const AddColorStopButton = styled(ColorStopBaseButton)`
 `;
 
 export const RemoveColorStopButton = styled(ColorStopBaseButton)`
+    @container color-stops (max-width: 340px) {
+        grid-column: 4;
+        grid-row: 1;
+    }
+
     flex-shrink: 0;
     width: 28px;
     padding: 0;
@@ -169,7 +188,7 @@ export const RemoveColorStopButton = styled(ColorStopBaseButton)`
 `;
 
 export const NoColorStops = styled.div`
-     display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 16px;

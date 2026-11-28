@@ -13,8 +13,8 @@ export const presets: GradientPreset[] = [
                 shape: Shape.CIRCLE,
                 position: { x: 50, y: 15 },
                 stops: [
-                    { id: 'li-1', color: '#ffffffb3', position: 0, opacity: 1 },
-                    { id: 'li-2', color: '#ffffff00', position: 45, opacity: 1 },
+                    { id: 'li-1', color: '#ffffff', position: 0, opacity: 0.7 },
+                    { id: 'li-2', color: '#ffffff', position: 45, opacity: 0 },
                 ],
             },
             {

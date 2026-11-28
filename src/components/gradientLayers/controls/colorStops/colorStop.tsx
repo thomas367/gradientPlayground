@@ -66,6 +66,8 @@ export const ColorStop = observer(function ColorStop({
             <Styled.OpacityControls>
                 <Styled.OpacityLabel>Opacity {opacity}%</Styled.OpacityLabel>
                 <RangeSlider
+                    ariaLabel="Color stop opacity"
+                    unit="%"
                     value={opacity}
                     min={0}
                     max={100}

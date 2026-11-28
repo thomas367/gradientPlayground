@@ -14,8 +14,13 @@ export function ColorPicker({ color, disabled = false, onChange }: ColorPickerPr
     const [isOpen, setIsOpen] = useState(false);
     const pickerRef = useRef<HTMLDivElement>(null);
 
+    const triggerRef = useRef<HTMLButtonElement>(null);
+    const isPickerOpen = isOpen && !disabled;
+
+    if (disabled && isOpen) setIsOpen(false);
+
     useEffect(() => {
-        if (!isOpen) return;
+        if (!isPickerOpen) return;
 
         const handlePointerDown = (event: PointerEvent) => {
             if (event.target instanceof Node && !pickerRef.current?.contains(event.target)) {
@@ -23,7 +28,9 @@ export function ColorPicker({ color, disabled = false, onChange }: ColorPickerPr
             }
         };
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') setIsOpen(false);
+            if (event.key !== 'Escape') return;
+            setIsOpen(false);
+            triggerRef.current?.focus();
         };
 
         document.addEventListener('pointerdown', handlePointerDown);
@@ -33,20 +40,21 @@ export function ColorPicker({ color, disabled = false, onChange }: ColorPickerPr
             document.removeEventListener('pointerdown', handlePointerDown);
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [isOpen]);
+    }, [isPickerOpen]);
 
     return (
         <Styled.Wrapper ref={pickerRef}>
             <Styled.ColorSample
+                ref={triggerRef}
                 type="button"
                 style={{ backgroundColor: color }}
                 disabled={disabled}
                 aria-label={`Choose color, current color ${color}`}
                 aria-haspopup="dialog"
-                aria-expanded={isOpen}
+                aria-expanded={isPickerOpen}
                 onClick={() => setIsOpen((open) => !open)}
             />
-            {isOpen && (
+            {isPickerOpen && (
                 <Styled.Popover role="dialog" aria-label="Color picker">
                     <ChromePicker color={color} disableAlpha onChange={({ hex }) => onChange(hex)} />
                 </Styled.Popover>

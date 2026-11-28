@@ -33,7 +33,7 @@ export const GradientLayers = observer(function GradientLayers(): React.JSX.Elem
         >
             {layers.length > 0 ? (
                 <Styled.LayerList>
-                    {layers.map((layer) => (
+                    {layers.map((layer, index) => (
                         <Styled.LayerItem key={layer.id}>
                             <Styled.LayerHeader>
                                 <GripVertical size={15} />
@@ -55,6 +55,7 @@ export const GradientLayers = observer(function GradientLayers(): React.JSX.Elem
                                     <Styled.IconButton
                                         type="button"
                                         aria-label="Move layer up"
+                                        disabled={index === 0}
                                         onClick={() => moveLayer(layer.id, 'up')}
                                     >
                                         <ArrowUp size={15} />
@@ -62,6 +63,7 @@ export const GradientLayers = observer(function GradientLayers(): React.JSX.Elem
                                     <Styled.IconButton
                                         type="button"
                                         aria-label="Move layer down"
+                                        disabled={index === layers.length - 1}
                                         onClick={() => moveLayer(layer.id, 'down')}
                                     >
                                         <ArrowDown size={15} />

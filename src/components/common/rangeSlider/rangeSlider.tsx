@@ -5,6 +5,7 @@ import * as Styled from './styles';
 
 interface RangeInputProps {
     label?: string;
+    ariaLabel?: string;
     value: number;
     min: number;
     max: number;
@@ -17,6 +18,7 @@ interface RangeInputProps {
 
 export function RangeSlider({
     label,
+    ariaLabel,
     value,
     min,
     max,
@@ -43,6 +45,7 @@ export function RangeSlider({
                     value={value}
                     disabled={disabled}
                     style={{ background }}
+                    aria-label={ariaLabel}
                     aria-valuetext={`${value}${unit}`}
                     onChange={(event) => onChange(event.target.valueAsNumber)}
                 />

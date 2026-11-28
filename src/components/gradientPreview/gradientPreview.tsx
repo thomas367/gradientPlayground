@@ -21,7 +21,10 @@ export const GradientPreview = observer(function GradientPreview(): React.JSX.El
     const [ratioWidth, setRatioWidth] = useState(4);
     const [ratioHeight, setRatioHeight] = useState(5);
 
-    const customRatio = ratioWidth > 0 && ratioHeight > 0 ? ratioWidth / ratioHeight : 1;
+    const isValidRatio =
+        Number.isFinite(ratioWidth) && Number.isFinite(ratioHeight) && ratioWidth > 0 && ratioHeight > 0;
+    const calculatedRatio = isValidRatio ? ratioWidth / ratioHeight : 1;
+    const customRatio = Number.isFinite(calculatedRatio) && calculatedRatio > 0 ? calculatedRatio : 1;
     const ratio = aspectRatio === 'custom' ? customRatio : RATIOS[aspectRatio];
 
     return (

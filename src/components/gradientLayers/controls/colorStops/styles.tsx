@@ -102,3 +102,43 @@ export const OpacityLabel = styled.span`
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 `;
+
+export const AddColorStopButton = styled.button`
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 10px;
+    margin-top: 4px;
+    border: 1px solid var(--color-secondary-border);
+    border-radius: 5px;
+    background: #202b47;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition:
+        background 150ms,
+        border-color 150ms;
+
+    &:hover:not(:disabled) {
+        background: #2a3654;
+        border-color: var(--color-primary-hover);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        background: #192136;
+        border-color: var(--color-border);
+        color: #76829c;
+        cursor: not-allowed;
+    }
+`;

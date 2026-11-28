@@ -167,3 +167,29 @@ export const RemoveColorStopButton = styled(ColorStopBaseButton)`
         cursor: not-allowed;
     }
 `;
+
+export const NoColorStops = styled.div`
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    border: 1px dashed var(--color-border);
+    border-radius: 6px;
+    gap: 6px;
+    text-align: center;
+`;
+
+export const NoColorStopTitle = styled.p`
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 20px;
+`;
+
+export const NoColorStopDescription = styled.p`
+    margin: 0;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    line-height: 18px;
+`;

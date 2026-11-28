@@ -1,4 +1,4 @@
-import { applyOpacity, generateBackground, generateCSS, generateGradient } from 'utils/gradient';
+import { applyOpacity, createColorStop, generateBackground, generateCSS, generateGradient } from 'utils/gradient';
 import type { GradientLayer } from 'types/gradient';
 import { GradientType, Shape } from 'types/gradient';
 
@@ -14,6 +14,10 @@ const linear: GradientLayer = {
 };
 
 describe('Gradient CSS generator', () => {
+    test('creates color stops using percentage positions', () => {
+        expect(createColorStop().position).toBe(50);
+    });
+
     test('applies stop opacity while preserving existing color alpha', () => {
         expect(applyOpacity('#ff0000', 0.5)).toBe('#ff000080');
         expect(applyOpacity('#ff000080', 0.5)).toBe('#ff000040');

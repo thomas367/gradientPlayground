@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import type { GradientLayer, GradientPreset, GradientType, ColorStop } from 'types/gradient';
 import { presets } from 'data/presets';
-import { generateBackground, generateCSS, createGradient, convertGradient } from 'utils/gradient';
+import { generateBackground, generateCSS, createGradient, convertGradient, createColorStop } from 'utils/gradient';
 
 class GradientStore {
     layers: GradientLayer[] = [];
@@ -84,6 +84,16 @@ class GradientStore {
 
         const convertedLayer = convertGradient(layer, type);
         this.layers[index] = convertedLayer;
+        this.selectedPresetId = null;
+    };
+
+    addColorStop = (layerId: string) => {
+        const layer = this.layers.find((layer) => layer.id === layerId);
+        if (!layer) return;
+
+        const newColor = createColorStop();
+        layer.stops.push(newColor);
+
         this.selectedPresetId = null;
     };
 

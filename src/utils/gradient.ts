@@ -106,3 +106,10 @@ export const convertGradient = (layer: GradientLayer, type: GradientType): Gradi
             return { ...baseLayerProperties, type, angle: 0, position: { x: 50, y: 50 } };
     }
 };
+
+export const createColorStop = (): ColorStop => ({
+    id: crypto.randomUUID(),
+    color: '#ffffff',
+    position: 50,
+    opacity: 1,
+});

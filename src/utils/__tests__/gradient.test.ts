@@ -6,11 +6,10 @@ const linear: GradientLayer = {
     id: 'linear-1',
     type: GradientType.LINEAR,
     enabled: true,
-    opacity: 1,
     angle: 90,
     stops: [
-        { id: '1', color: '#ff0000', position: 0 },
-        { id: '2', color: '#0000ff', position: 100 },
+        { id: '1', color: '#ff0000', position: 0, opacity: 1 },
+        { id: '2', color: '#0000ff', position: 100, opacity: 1 },
     ],
 };
 

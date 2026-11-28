@@ -1,7 +1,7 @@
 import { GradientType, Shape } from 'types/gradient';
 import type { ColorStop, GradientLayer } from 'types/gradient';
 
-const formatStops = (stops: ColorStop[], opacity: number, type: GradientLayer['type']): string =>
+const formatStops = (stops: ColorStop[], type: GradientLayer['type']): string =>
     [...stops]
         .sort((a, b) => a.position - b.position)
         .map(({ color, position }) => {
@@ -13,7 +13,7 @@ const formatStops = (stops: ColorStop[], opacity: number, type: GradientLayer['t
         .join(', ');
 
 export const generateGradient = (layer: GradientLayer): string => {
-    const stops = formatStops(layer.stops, layer.opacity, layer.type);
+    const stops = formatStops(layer.stops, layer.type);
 
     switch (layer.type) {
         case GradientType.LINEAR:
@@ -40,20 +40,21 @@ export const generateCSS = (layers: GradientLayer[]): string => {
 };
 
 export const createGradient = (type: GradientType): GradientLayer => {
-    const newLayer: Pick<GradientLayer, 'id' | 'enabled' | 'opacity' | 'stops'> = {
+    const newLayer: Pick<GradientLayer, 'id' | 'enabled' | 'stops'> = {
         id: crypto.randomUUID(),
         enabled: true,
-        opacity: 1,
         stops: [
             {
                 id: crypto.randomUUID(),
                 color: '#9566ff',
                 position: 0,
+                opacity: 1,
             },
             {
                 id: crypto.randomUUID(),
                 color: '#ec4899',
                 position: 100,
+                opacity: 1,
             },
         ],
     };
@@ -73,7 +74,6 @@ export const convertGradient = (layer: GradientLayer, type: GradientType): Gradi
     const baseLayerProperties = {
         id: layer.id,
         enabled: layer.enabled,
-        opacity: layer.opacity,
         stops: layer.stops,
     };
 

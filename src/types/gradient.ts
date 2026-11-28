@@ -13,6 +13,7 @@ export interface ColorStop {
     id: string;
     color: string;
     position: number;
+    opacity: number;
 }
 
 export type ColorStops = [ColorStop, ColorStop, ...ColorStop[]];
@@ -25,7 +26,6 @@ export interface Position {
 interface BaseGradient {
     id: string;
     enabled: boolean;
-    opacity: number;
     stops: ColorStops;
 }
 

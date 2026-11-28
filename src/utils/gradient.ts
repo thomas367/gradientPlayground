@@ -32,6 +32,8 @@ const formatStops = (stops: ColorStop[], type: GradientLayer['type']): string =>
         .join(', ');
 
 export const generateGradient = (layer: GradientLayer): string => {
+    if (layer.stops.length < 2) return '';
+
     const stops = formatStops(layer.stops, layer.type);
 
     switch (layer.type) {
@@ -50,6 +52,7 @@ export const generateBackground = (layers: GradientLayer[]): string =>
     layers
         .filter((layer) => layer.enabled)
         .map(generateGradient)
+        .filter((gradient) => gradient.length > 0)
         .join(', ');
 
 export const generateCSS = (layers: GradientLayer[]): string => {

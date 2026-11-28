@@ -16,7 +16,7 @@ export interface ColorStop {
     opacity: number;
 }
 
-export type ColorStops = [ColorStop, ColorStop, ...ColorStop[]];
+export type ColorStops = ColorStop[];
 
 export interface Position {
     x: number;

@@ -56,7 +56,7 @@ class GradientStore {
             stops: layer.stops.map((stop) => ({
                 ...stop,
                 id: crypto.randomUUID(),
-            })) as typeof layer.stops,
+            })),
         };
         this.layers.splice(index + 1, 0, duplicatedLayer);
         this.selectedPresetId = null;
@@ -94,6 +94,17 @@ class GradientStore {
         const newColor = createColorStop();
         layer.stops.push(newColor);
 
+        this.selectedPresetId = null;
+    };
+
+    removeColorStop = (layerId: string, stopId: string) => {
+        const layer = this.layers.find((layer) => layer.id === layerId);
+        if (!layer) return;
+
+        const stopIndex = layer.stops.findIndex((stop) => stop.id === stopId);
+        if (stopIndex === -1) return;
+
+        layer.stops.splice(stopIndex, 1);
         this.selectedPresetId = null;
     };
 

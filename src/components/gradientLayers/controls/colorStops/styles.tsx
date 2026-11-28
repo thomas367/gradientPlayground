@@ -103,24 +103,26 @@ export const OpacityLabel = styled.span`
     white-space: nowrap;
 `;
 
-export const AddColorStopButton = styled.button`
+export const ColorStopBaseButton = styled.button`
     display: inline-flex;
     align-items: center;
-    align-self: flex-start;
     justify-content: center;
-    gap: 6px;
     height: 28px;
-    padding: 0 10px;
-    margin-top: 4px;
     border: 1px solid var(--color-secondary-border);
     border-radius: 5px;
+    cursor: pointer;
+`;
+
+export const AddColorStopButton = styled(ColorStopBaseButton)`
+    align-self: flex-start;
+    gap: 6px;
+    padding: 0 10px;
+    margin-top: 4px;
     background: #202b47;
     color: var(--color-text);
     font-family: inherit;
     font-size: 12px;
     font-weight: 500;
-
-    cursor: pointer;
     transition:
         background 150ms,
         border-color 150ms;
@@ -139,6 +141,34 @@ export const AddColorStopButton = styled.button`
         background: #192136;
         border-color: var(--color-border);
         color: #76829c;
+        cursor: not-allowed;
+    }
+`;
+
+export const RemoveColorStopButton = styled(ColorStopBaseButton)`
+    flex-shrink: 0;
+    width: 28px;
+    padding: 0;
+    background: #192136;
+    color: var(--color-text-secondary);
+    transition:
+        background 150ms,
+        border-color 150ms,
+        color 150ms;
+
+    &:hover:not(:disabled) {
+        background: #3b2232;
+        border-color: var(--color-error);
+        color: var(--color-error);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.4;
         cursor: not-allowed;
     }
 `;

@@ -1,6 +1,7 @@
 import type React from 'react';
 import { observer } from 'mobx-react-lite';
 import { gradientStore } from 'stores/gradientStore';
+import { Trash2 } from 'lucide-react';
 import type { ColorStop as ColorStopProp } from 'types/gradient';
 import { GradientType } from 'types/gradient';
 import { ColorPicker } from 'components/common/colorPicker/colorPicker';
@@ -23,7 +24,7 @@ export const ColorStop = observer(function ColorStop({
 }: ColorStopProps): React.JSX.Element {
     const isConic = gradientType === GradientType.CONIC;
     const opacity = Math.round(stop.opacity * 100);
-    const { updateColorStop } = gradientStore;
+    const { updateColorStop, removeColorStop } = gradientStore;
 
     const handlePositionChange = (value: number) => {
         const max = isConic ? 360 : 100;
@@ -40,6 +41,10 @@ export const ColorStop = observer(function ColorStop({
 
     const handleOpacityChange = (opacity: number) => {
         updateColorStop(layerId, stop.id, { opacity: opacity / 100 });
+    };
+
+    const handleRemoveColorStop = (layerId: string, stopId: string) => {
+        removeColorStop(layerId, stopId);
     };
 
     return (
@@ -70,6 +75,14 @@ export const ColorStop = observer(function ColorStop({
                     onChange={(value) => handleOpacityChange(value)}
                 />
             </Styled.OpacityControls>
+            <Styled.RemoveColorStopButton
+                type="button"
+                disabled={!enabled}
+                aria-label="Remove color stop"
+                onClick={() => handleRemoveColorStop(layerId, stop.id)}
+            >
+                <Trash2 size={14} />
+            </Styled.RemoveColorStopButton>
         </Styled.ColorStopRow>
     );
 });

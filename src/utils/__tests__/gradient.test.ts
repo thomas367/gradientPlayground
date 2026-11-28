@@ -63,6 +63,12 @@ describe('Gradient CSS generator', () => {
         expect(generateBackground([{ ...linear, enabled: false }])).toBe('');
     });
 
+    test('omits layers with fewer than two stops from generated CSS', () => {
+        expect(generateGradient({ ...linear, stops: [] })).toBe('');
+        expect(generateGradient({ ...linear, stops: [linear.stops[0]] })).toBe('');
+        expect(generateCSS([{ ...linear, stops: [] }])).toBe('background: none;');
+    });
+
     test('preserves gradient layer order', () => {
         expect(generateBackground([linear, { ...linear, id: 'second' }])).toBe(
             `${generateGradient(linear)}, ${generateGradient(linear)}`,

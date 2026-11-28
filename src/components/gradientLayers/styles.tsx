@@ -5,7 +5,6 @@ export const ButtonsWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 16px;
 `;
 
 export const AddButton = styled.button`
@@ -84,7 +83,6 @@ export const LayerHeader = styled.div`
     align-items: center;
     gap: 8px;
     min-width: 0;
-    margin-bottom: 12px;
 `;
 
 export const LayerTypeSelectWrapper = styled.div`
@@ -173,17 +171,10 @@ export const EyeButton = styled(IconButton)<{ $enabled: boolean }>`
     color: ${(props): string => (props.$enabled ? 'var(--color-text)' : '#76829c')};
 `;
 
-export const LayerSamplesWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-`;
-
 export const LayerInfo = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 4px;
+    gap: 12px;
     min-width: 0;
 `;

@@ -110,8 +110,8 @@ export const presets: GradientPreset[] = [
                 enabled: true,
                 angle: 145,
                 stops: [
-                    { id: 'ocean-1', color: '#06b6d4', position: 0, opacity: 1, },
-                    { id: 'ocean-2', color: '#0b265d', position: 100, opacity: 1, },
+                    { id: 'ocean-1', color: '#06b6d4', position: 0, opacity: 1 },
+                    { id: 'ocean-2', color: '#0b265d', position: 100, opacity: 1 },
                 ],
             },
         ],

@@ -7,7 +7,6 @@ export const ControlsWrapper = styled.div`
     gap: 8px;
     width: 100%;
     min-width: 0;
-    margin: 10px 0 12px;
 `;
 
 export const RadialControlsWrapper = styled.div`
@@ -57,7 +56,6 @@ export const ShapeSelect = styled.select`
     border-radius: 5px;
     background: #192136;
     color: var(--color-text);
-    font-family: inherit;
     font-size: 12px;
     cursor: pointer;
     transition:

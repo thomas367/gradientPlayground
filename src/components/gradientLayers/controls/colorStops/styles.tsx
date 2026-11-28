@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 12px;
     gap: 8px;
 `;
 
@@ -32,7 +31,6 @@ export const ColorStopRow = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-    min-height: 28px;
     width: 100%;
 `;
 
@@ -46,7 +44,6 @@ export const PositionWrapper = styled.div`
 export const PositionInput = styled.input`
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
     padding: 0 24px 0 10px;
     background: #202b47;
     border: 1px solid #374461;
@@ -117,10 +114,8 @@ export const AddColorStopButton = styled(ColorStopBaseButton)`
     align-self: flex-start;
     gap: 6px;
     padding: 0 10px;
-    margin-top: 4px;
     background: #202b47;
     color: var(--color-text);
-    font-family: inherit;
     font-size: 12px;
     font-weight: 500;
     transition:

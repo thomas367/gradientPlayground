@@ -5,6 +5,7 @@ import { Panel } from 'components/panel/panel';
 import { LinearControls } from 'components/gradientLayers/controls/linearControls';
 import { RadialControls } from 'components/gradientLayers/controls/radialControls';
 import { ConicControls } from 'components/gradientLayers/controls/conicControls';
+import { ColorStops } from 'components/gradientLayers/controls/colorStops/colorStops';
 import { gradientStore } from 'stores/gradientStore';
 import { GradientType } from 'types/gradient';
 
@@ -93,16 +94,7 @@ export const GradientLayers = observer(function GradientLayers(): React.JSX.Elem
                                 {layer.type === GradientType.LINEAR && <LinearControls layer={layer} />}
                                 {layer.type === GradientType.RADIAL && <RadialControls layer={layer} />}
                                 {layer.type === GradientType.CONIC && <ConicControls layer={layer} />}
-                                <Styled.LayerSamplesWrapper>
-                                    {layer.stops.map((stop) => (
-                                        <Styled.LayerSample
-                                            key={stop.id}
-                                            $color={stop.color}
-                                            title={`${stop.color} — ${stop.position}%`}
-                                            $enabled={layer.enabled}
-                                        />
-                                    ))}
-                                </Styled.LayerSamplesWrapper>
+                                <ColorStops layer={layer} />
                             </Styled.LayerInfo>
                         </Styled.LayerItem>
                     ))}
